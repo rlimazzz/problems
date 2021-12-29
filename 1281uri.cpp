@@ -6,38 +6,32 @@ using namespace std;
 
 int main()
 {
-    string entrada;
-    while(cin >> entrada)
+    int t;
+    cin >> t;
+    cout << fixed << setprecision(2);
+    for(int i = 0;i < t;i++)
     {
-        int contador = 0;
-        stack<char> aberta;
-        for(int k = 0;k < entrada.size();k++)
+        int m;
+        float valor = 0;
+        map<string , float> produtos;
+        cin >> m;
+        for(int k = 0;k < m;k++)
         {
-            if(entrada[k] == '(')
-            {
-                aberta.push('(');
-            }
-            else if(entrada[k] == ')')
-            {
-                if(aberta.empty() == true)
-                {
-                    contador++;
-                    break;
-                }
-                else
-                {
-                    aberta.pop();
-                }
-            }
+            string nome;
+            float preco;
+            cin >> nome >> preco;
+            produtos.insert(make_pair(nome, preco));
         }
-        if(aberta.empty() == false || contador > 0)
+        int p;
+        cin >> p;
+        for(int j = 0;j < p;j++)
         {
-            cout << "incorrect" << endl;
+            string quero;
+            int quant;
+            cin >> quero >> quant;
+            valor += produtos[quero] * quant;
         }
-        else
-        {
-            cout << "correct" << endl;
-        }
+        cout << "R$ " << valor << endl;
     }
 	return 0;
 }
