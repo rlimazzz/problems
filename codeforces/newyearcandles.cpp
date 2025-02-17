@@ -8,16 +8,16 @@ void solve() {
     int a , b;
     cin >> a >> b;
 
-    int ans = a;
-    while(a / b > 0) {
-        ans += a / b;
-        a /= b;
-
-        if(a / b < 0) {
-            ans += a % b;
-        }
+    int mainly = a, temp = 0, bla =0 ;    
+    while(a >= b) {
+        bla = a / b;
+        mainly += bla;
+        temp = a % b;
+        a = bla + temp;
     }
-    cout << ans << "\n";
+
+
+    cout << mainly << "\n";
 }
 
 int32_t main() {
