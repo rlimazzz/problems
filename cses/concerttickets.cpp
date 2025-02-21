@@ -2,41 +2,33 @@
 
 using namespace std;
 
+multiset<int> a;
+
+auto bs() {
+    auto ini = a.begin(), fim = a.end();
+    int val1 = *ini, val2 = *fim;
+}
+
+
 void solve() {
-    int n, m;
+    int n , m;
     cin >> n >> m;
-    vector<int> a(n);
-    multiset<int> b;
-    vector<int> copy(m);
+
+    vector<int> valores(m);
 
     for(int i = 0;i < n;i++) {
-        cin >> a[i];
-    }
-    
-    for(int i = 0;i < m;i++) {
         int entr;
         cin >> entr;
-        copy[i] = entr;
-        b.insert(entr);
-    }
 
-    map<int,int> respostas;
-    for(int i = n - 1;i >= 0;i--) { 
-        auto it = lower_bound(b.begin(),b.end(),a[i]);
-
-        if(it != b.end()) {
-            int valor = *it;
-
-            if(a[i] <= valor) {
-                respostas[valor] = a[i];
-                b.erase(it);
-            }
-        }
+        a.insert(entr);
     }
 
     for(int i = 0;i < m;i++) {
-        cout << respostas[copy[i]] << endl;
+        cin >> valores[i];
+        
+        auto it = lower_bound(a.begin(), a.end(), valores[i]);
     }
+
 
 }
 
