@@ -3,26 +3,40 @@
 using namespace std;
 
 void solve() {
-    int n;
-    string entr;
-    cin >> n >> entr;
+    int tam;
+    string a;
+    cin >> tam >> a;
 
-    map<char, bool> percorri;
-    set<char>
+    vector<int> l(tam + 1), r(tam + 1);
 
-    int ans = INT_MIN;
-    for(int i = 0;i < n;i++) {
-        if(!percorri[entr[i]]) {
-            percorri[entr[i]] = true;
-        }
-        else if(percorri[entr[i]]) {
-            ans = i + 1;
+    {
+        unordered_set<int> s;
+        for(int i = 0;i < tam;i++) {
+            s.insert(a[i]);
+            l[i + 1] = s.size();
         }
     }
+
+
+    {
+        unordered_set<int> s;
+        for(int i = tam - 1;i >= 0;i--) {
+            s.insert(a[i]);
+            r[i] = s.size();
+        }
+    }
+
+    int ans = 0;
+    for(int i = 1;i < tam ;i++) {
+        ans = max(ans, l[i] + r[i]);
+    }
     cout << ans << endl;
+
 }
 
 int32_t main() {
+    ios_base::sync_with_stdio(NULL);
+    cin.tie(0);
     int t;
     cin >> t;
 
