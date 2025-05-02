@@ -19,26 +19,40 @@ void join(int x, int y) {
         return;
     }
 
-    else if(peso[x] < peso[y]) {
+    if(peso[y] < peso[x]) {
+        pai[y] = x;
+        qtd[x] += qtd[y];
+    }
+    else if(peso[y] > peso[x]) {
         pai[x] = y;
         qtd[y] += qtd[x];
     }
-    else if(peso[x] > peso[y]) {
-        pai[y] = x;
-        qtd[x] += qtd[y];
-    }else {
+    else{
         pai[x] = y;
-        qtd[y] += qtd[x];
         peso[y]++;
+        qtd[y] += qtd[x];
     }
 }
 
-int main() {
+int32_t main() {
     cin >> n >> k;
 
     for(int i = 1;i <= n;i++) {
-        pai[i] = i;
         qtd[i] = 1;
+        pai[i] = i;
     }
+
+    for(int i = 0;i < k;i++) {
+        char a;
+        int b, c;
+        cin >> a >> b >> c;
+
+        if(a == 'F') {
+            join(b, c);
+        }else {
+            find(b) == find(c) ? cout << "S\n" : cout << "N\n";
+        }
+    }
+
     return 0;
 }
