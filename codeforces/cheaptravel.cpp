@@ -2,20 +2,19 @@
 
 using namespace std;
 
-
 int n, m , a , b;
-int recursion() {
-
-}	
 
 void solve() {
 	cin >> n >> m >> a >> b;
 
-	if(n * a <= b) {
+	double med = b / m;
+
+	if(med < (double)a) {
+		int k = (n / m) * b;
+		int resto = (n % m) * a;
+		cout << min(k + resto, k + b) << "\n";
+	} else {
 		cout << n * a << "\n";
-	}
-	else {
-		cout << (n / m) * b + min((n % m) * a, b) << "\n";
 	}
 }
 
