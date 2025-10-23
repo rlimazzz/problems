@@ -3,10 +3,12 @@
 using namespace std;
 
 void solve() {
+	int tam;
+	cin >> tam;
 	string entr;
 	cin >> entr;
 
-	//objective : take the pos where we can eliminate the greater number of U
+	//objective : take the pos where we can eliminate the greatest number of U
 	int maxi = INT_MIN, maxpos = 0;
 	int j = (int)entr.size(), defi = 0;
 	while(j--) {
@@ -52,6 +54,11 @@ void solve() {
 			entr[j - 2] = (entr[j - 2] == 'D') ? 'U' : 'D';
 		}
 		defi++;
+	}
+	if(defi % 2) {
+		cout << "YES\n";
+	}else {
+		cout << "NO\n";
 	}
 }
 
